@@ -22,7 +22,7 @@ class _TaskScreenState extends State<TaskScreen> {
       setState(() {
         _isLoading = true;
       });
-      Provider.of<Tasks>(context).fetchAndSetProducts().then((_) {
+      Provider.of<Tasks>(context).fetchAndSetTask().then((_) {
         setState(() {
           _isLoading = false;
         });
@@ -35,6 +35,9 @@ class _TaskScreenState extends State<TaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Note"),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, 'addtask');
@@ -45,7 +48,7 @@ class _TaskScreenState extends State<TaskScreen> {
           ? Center(
               child: CircularProgressIndicator(),
             )
-          : ProductsGrid(),
+          : TaskItem(),
     );
   }
 }

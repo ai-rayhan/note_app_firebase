@@ -86,6 +86,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  flutter_stripe:
+    dependency: "direct main"
+    description:
+      name: flutter_stripe
+      sha256: "317be4a0c5bbc02170449d62615c0667d018a16fdd43e7e8dbf7cb121ea6f5fd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.2.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -96,6 +104,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  freezed_annotation:
+    dependency: transitive
+    description:
+      name: freezed_annotation
+      sha256: aeac15850ef1b38ee368d4c53ba9a847e900bb2c53a4db3f6881cbb3cb684338
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
   http:
     dependency: "direct main"
     description:
@@ -120,6 +136,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.5"
+  json_annotation:
+    dependency: transitive
+    description:
+      name: json_annotation
+      sha256: b10a7b2ff83d83c777edba3c6a0f97045ddadd56c944e1a23a3fdf43a1bf4467
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.8.1"
   lints:
     dependency: transitive
     description:
@@ -317,14 +341,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  stripe_payment:
-    dependency: "direct main"
+  stripe_android:
+    dependency: transitive
     description:
-      name: stripe_payment
-      sha256: "8c84e07127f821fdcb63697461fff3a68a693eee4286c28a4cb313517c46e9d6"
+      name: stripe_android
+      sha256: e5557f2a81cb5070d48edf33168ca3891a22c63f0be98d90edeba54c4328dd21
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.4"
+    version: "9.2.1"
+  stripe_ios:
+    dependency: transitive
+    description:
+      name: stripe_ios
+      sha256: e397609a5083b79706814342b40a2a58f1b97ecab2b9d6cae8d8e9f59646fc8c
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.2.1"
+  stripe_platform_interface:
+    dependency: transitive
+    description:
+      name: stripe_platform_interface
+      sha256: "8148f5fb15ed7fd9236559edfd72260657c03904cfe67d3ebba7eeaa20bb4261"
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.2.1"
   term_glyph:
     dependency: transitive
     description:

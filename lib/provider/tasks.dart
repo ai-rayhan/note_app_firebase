@@ -17,7 +17,7 @@ class Tasks with ChangeNotifier {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
-  Future<void> fetchAndSetProducts() async {
+  Future<void> fetchAndSetTask() async {
 // https://todoapp-e736b-default-rtdb.firebaseio.com/
     final url =
         Uri.https('todoapp-e736b-default-rtdb.firebaseio.com', '/tasks.json');
@@ -42,7 +42,7 @@ class Tasks with ChangeNotifier {
     }
   }
 
-  Future<void> addProduct(Task product) async {
+  Future<void> addTask(Task product) async {
     // final url = Uri.https('flutter-update.firebaseio.com', '/products.json');
     final url = Uri.parse(
         'https://todoapp-e736b-default-rtdb.firebaseio.com/tasks.json');
@@ -67,7 +67,7 @@ class Tasks with ChangeNotifier {
     }
   }
 
-  Future<void> updateProduct(String id, Task newProduct) async {
+  Future<void> updateTask(String id, Task newProduct) async {
     final prodIndex = _items.indexWhere((prod) => prod.id == id);
     if (prodIndex >= 0) {
       final url =
@@ -84,10 +84,10 @@ class Tasks with ChangeNotifier {
     }
   }
 
-  Future<void> deleteProduct(String id) async {
-    final url =
-    Uri.https('todoapp-e736b-default-rtdb.firebaseio.com', '/tasks/$id.json');
-        // Uri.https('flutter-update.firebaseio.com', '/products/$id.json');
+  Future<void> deleteTask(String id) async {
+    final url = Uri.https(
+        'todoapp-e736b-default-rtdb.firebaseio.com', '/tasks/$id.json');
+    // Uri.https('flutter-update.firebaseio.com', '/products/$id.json');
     final existingProductIndex = _items.indexWhere((prod) => prod.id == id);
     Task? existingProduct = _items[existingProductIndex];
     _items.removeAt(existingProductIndex);

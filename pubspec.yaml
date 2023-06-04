@@ -38,7 +38,7 @@ dependencies:
   http: ^0.13.6
   provider: ^6.0.5
   shared_preferences: ^2.1.1
-  stripe_payment: ^1.1.4
+  flutter_stripe: ^9.2.1
 
 dev_dependencies:
   flutter_test:

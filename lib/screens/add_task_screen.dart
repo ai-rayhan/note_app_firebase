@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 import '../provider/tasks.dart';
 
 class EditTaskScreen extends StatefulWidget {
-
-
   @override
   _EditTaskScreenState createState() => _EditTaskScreenState();
 }
@@ -15,7 +13,6 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
   final _descriptionFocusNode = FocusNode();
   final _imageUrlFocusNode = FocusNode();
 
- 
   final _form = GlobalKey<FormState>();
 
   var _isInit = true;
@@ -32,15 +29,13 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
     'description': '',
   };
 
-
-
   @override
   void didChangeDependencies() {
     if (_isInit) {
       var productId = ModalRoute.of(context)?.settings.arguments;
       if (productId != null) {
-        _editedProduct =
-            Provider.of<Tasks>(context, listen: false).findById(productId as String);
+        _editedProduct = Provider.of<Tasks>(context, listen: false)
+            .findById(productId as String);
         _initValues = {
           'title': _editedProduct.title,
           'description': _editedProduct.description,
@@ -50,10 +45,6 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
     _isInit = false;
     super.didChangeDependencies();
   }
-
-
-
-
 
   Future<void> _saveForm() async {
     final isValid = _form.currentState!.validate();
@@ -66,29 +57,28 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
     });
     if (_editedProduct.id != '') {
       await Provider.of<Tasks>(context, listen: false)
-          .updateProduct(_editedProduct.id, _editedProduct);
+          .updateTask(_editedProduct.id, _editedProduct);
     } else {
       try {
         await Provider.of<Tasks>(context, listen: false)
-            .addProduct(_editedProduct);
+            .addTask(_editedProduct);
       } catch (error) {
         await showDialog(
           context: context,
           builder: (ctx) => AlertDialog(
-                title: Text('An error occurred!'),
-                content: Text('Something went wrong.'),
-                actions: <Widget>[
-                  TextButton(
-                    child: Text('Okay'),
-                    onPressed: () {
-                      Navigator.of(ctx).pop();
-                    },
-                  )
-                ],
-              ),
+            title: Text('An error occurred!'),
+            content: Text('Something went wrong.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('Okay'),
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                },
+              )
+            ],
+          ),
         );
       }
-
     }
     setState(() {
       _isLoading = false;
@@ -133,19 +123,16 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                       },
                       onSaved: (value) {
                         _editedProduct = Task(
-                            title: value!,
-                      
-                            description: _editedProduct.description,
-      
-                            id: _editedProduct.id,
-                           );
+                          title: value!,
+                          description: _editedProduct.description,
+                          id: _editedProduct.id,
+                        );
                       },
                     ),
-
                     TextFormField(
                       initialValue: _initValues['description'],
                       decoration: InputDecoration(labelText: 'Description'),
-                      maxLines: 3,
+                      maxLines: 50,
                       keyboardType: TextInputType.multiline,
                       focusNode: _descriptionFocusNode,
                       validator: (value) {
@@ -160,15 +147,11 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                       onSaved: (value) {
                         _editedProduct = Task(
                           title: _editedProduct.title,
-                          
                           description: value!,
-                     
                           id: _editedProduct.id,
-                         
                         );
                       },
                     ),
-                    
                   ],
                 ),
               ),
