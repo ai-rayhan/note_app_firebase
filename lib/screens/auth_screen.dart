@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../models/connection_checker.dart';
 import '../provider/auth.dart';
 
 enum AuthMode { Signup, Login }
@@ -103,6 +104,7 @@ class _AuthCardState extends State<AuthCard>
   final _passwordController = TextEditingController();
   late AnimationController animationController;
   late Animation<Size> heightAnimation;
+  
   @override
   void initState() {
     animationController =
@@ -126,7 +128,9 @@ class _AuthCardState extends State<AuthCard>
   }
 
   void _submit() async {
-    if (!_formKey.currentState!.validate()) {
+    bool connectionStatus = await checkInternetConnection();
+  if(connectionStatus){
+      if (!_formKey.currentState!.validate()) {
       // Invalid!
       return;
     }
@@ -134,16 +138,37 @@ class _AuthCardState extends State<AuthCard>
     setState(() {
       _isLoading = true;
     });
+   
     if (_authMode == AuthMode.Login) {
       await Provider.of<Auth>(context, listen: false)
-          .signin(_authData['email']!, _authData['password']!);
+          .signin(_authData['email']!, _authData['password']!,);
     } else {
       await Provider.of<Auth>(context, listen: false)
-          .signup(_authData['email']!, _authData['password']!);
+          .signup(_authData['email']!, _authData['password']!,);
     }
     setState(() {
       _isLoading = false;
     });
+  }else{
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Connection Error'),
+              content: Text(
+                  'No internet connection. Please check your network settings.'),
+              actions: [
+                TextButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+  }
   }
 
   void _switchAuthMode() {

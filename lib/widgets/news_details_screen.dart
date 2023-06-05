@@ -23,16 +23,16 @@ class PostDetailsScreen extends StatelessWidget {
               'Title:',
               style: TextStyle(
                 fontSize: 18,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
               ),
             ),
             Text(post.title),
             SizedBox(height: 16),
             Text(
-              'Body:',
+              'Description:',
               style: TextStyle(
                 fontSize: 18,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
               ),
             ),
             Text(post.body),

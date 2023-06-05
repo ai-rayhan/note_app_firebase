@@ -132,7 +132,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                     TextFormField(
                       initialValue: _initValues['description'],
                       decoration: InputDecoration(labelText: 'Description'),
-                      maxLines: 50,
+                      maxLines: 5,
                       keyboardType: TextInputType.multiline,
                       focusNode: _descriptionFocusNode,
                       validator: (value) {

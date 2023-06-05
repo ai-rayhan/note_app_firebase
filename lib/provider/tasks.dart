@@ -6,7 +6,7 @@ import '../models/http_exeception.dart';
 
 class Tasks with ChangeNotifier {
   List<Task> _items = [
-    Task(id: "id", title: "tile", description: 'description')
+    // Task(id: "id", title: "tile", description: 'description')
   ];
 
   List<Task> get items {
@@ -38,12 +38,11 @@ class Tasks with ChangeNotifier {
       _items = loadedProducts;
       notifyListeners();
     } catch (error) {
-      throw (error);
+      print('an error occour');
     }
   }
 
   Future<void> addTask(Task product) async {
-    // final url = Uri.https('flutter-update.firebaseio.com', '/products.json');
     final url = Uri.parse(
         'https://todoapp-e736b-default-rtdb.firebaseio.com/tasks.json');
     try {
@@ -71,7 +70,7 @@ class Tasks with ChangeNotifier {
     final prodIndex = _items.indexWhere((prod) => prod.id == id);
     if (prodIndex >= 0) {
       final url =
-          Uri.https('flutter-update.firebaseio.com', '/products/$id.json');
+          Uri.https(  'todoapp-e736b-default-rtdb.firebaseio.com', '/tasks/$id.json');
       await http.patch(url,
           body: json.encode({
             'title': newProduct.title,
