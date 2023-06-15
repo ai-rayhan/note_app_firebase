@@ -64,6 +64,7 @@ class _MyAppState extends State<MyApp> {
         ],
         child: Consumer<Auth>(
           builder: (context, auth, child) => MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: darkTheme
                 ? ThemeData.dark()
