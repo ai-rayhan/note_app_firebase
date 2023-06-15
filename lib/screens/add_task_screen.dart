@@ -92,7 +92,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Product'),
+        title: Text('Edit Task'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.save),
