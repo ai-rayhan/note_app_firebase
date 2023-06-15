@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app_firebase/provider/auth.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/tasks.dart';
@@ -18,11 +19,12 @@ class _TaskScreenState extends State<TaskScreen> {
 
   @override
   void didChangeDependencies() {
+    var userId = Provider.of<Auth>(context,listen: false).getUserId;
     if (_isInit) {
       setState(() {
         _isLoading = true;
       });
-      Provider.of<Tasks>(context).fetchAndSetTask().then((_) {
+      Provider.of<Tasks>(context).fetchAndSetTask(userId).then((_) {
         setState(() {
           _isLoading = false;
         });

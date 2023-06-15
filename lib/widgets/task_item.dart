@@ -3,6 +3,8 @@ import 'package:note_app_firebase/provider/task.dart';
 import 'package:note_app_firebase/provider/tasks.dart';
 import 'package:provider/provider.dart';
 
+import '../provider/auth.dart';
+
 class TaskItem extends StatelessWidget {
   const TaskItem({super.key});
 
@@ -35,6 +37,7 @@ class TaskDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final task = Provider.of<Task>(context, listen: false);
+     var userId = Provider.of<Auth>(context,listen: false).getUserId;
     var sc = ScaffoldMessenger.of(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
@@ -57,19 +60,19 @@ class TaskDetails extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, 'addtask', arguments: task.id);
                 },
-                color: Theme.of(context).primaryColor,
+                // color: Theme.of(context).primaryColor,
               ),
               IconButton(
                 icon: const Icon(Icons.delete),
                 onPressed: () async {
                   try {
                     await Provider.of<Tasks>(context, listen: false)
-                        .deleteTask(task.id);
+                        .deleteTask(task.id,userId);
                   } catch (e) {
                     sc.showSnackBar(SnackBar(content: Text(e.toString())));
                   }
                 },
-                color: Theme.of(context).errorColor,
+                // color: Theme.of(context).appBarTheme.backgroundColor,
               ),
             ],
           ),

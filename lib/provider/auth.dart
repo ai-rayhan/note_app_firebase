@@ -10,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/http_exeception.dart';
 
-const apikey = 'AIzaSyCNc89IfAo0YaLH8KfV4HNZoCTWngfFd2A';
+const apikey = 'AIzaSyBvmdtO9v1icX1UY7IAyTX-TWewKUGYzlc';
 
 class Auth with ChangeNotifier {
   var token;
@@ -65,6 +65,7 @@ class Auth with ChangeNotifier {
       notifyListeners();
       trytoLogIn();
       print(responseData);
+      print(' userid:\n $userId');
     } catch (error) {
       throw error;
     }
@@ -92,14 +93,14 @@ class Auth with ChangeNotifier {
       token = exetractedata['token'];
       userId = exetractedata['userId'];
       expiryDate = exparydate;
-      print('$expiryDate $userId $token');
+      print('$expiryDate \n userid :$userId \n$token');
       notifyListeners();
       autoLogout();
       return true;
     }
   }
 
-  logout() async{
+  logout() async {
     token = null;
     userId = '';
     expiryDate = null;
@@ -108,7 +109,7 @@ class Auth with ChangeNotifier {
       authtimer = null;
     }
     final prefs = await SharedPreferences.getInstance();
-      prefs.remove('authdata');
+    prefs.remove('authdata');
     notifyListeners();
   }
 

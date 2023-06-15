@@ -17,10 +17,10 @@ class Tasks with ChangeNotifier {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
-  Future<void> fetchAndSetTask() async {
+  Future<void> fetchAndSetTask(userId) async {
 // https://todoapp-e736b-default-rtdb.firebaseio.com/
     final url =
-        Uri.https('todoapp-e736b-default-rtdb.firebaseio.com', '/tasks.json');
+        Uri.https('todoapp-e736b-default-rtdb.firebaseio.com', '/tasks/$userId.json');
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
@@ -42,9 +42,9 @@ class Tasks with ChangeNotifier {
     }
   }
 
-  Future<void> addTask(Task product) async {
+  Future<void> addTask(Task product ,userId) async {
     final url = Uri.parse(
-        'https://todoapp-e736b-default-rtdb.firebaseio.com/tasks.json');
+        'https://todoapp-e736b-default-rtdb.firebaseio.com/tasks/$userId.json');
     try {
       final response = await http.post(
         url,
@@ -66,11 +66,11 @@ class Tasks with ChangeNotifier {
     }
   }
 
-  Future<void> updateTask(String id, Task newProduct) async {
+  Future<void> updateTask(String id, Task newProduct,userId) async {
     final prodIndex = _items.indexWhere((prod) => prod.id == id);
     if (prodIndex >= 0) {
       final url =
-          Uri.https(  'todoapp-e736b-default-rtdb.firebaseio.com', '/tasks/$id.json');
+          Uri.https(  'todoapp-e736b-default-rtdb.firebaseio.com', '/tasks/$userId/$id.json');
       await http.patch(url,
           body: json.encode({
             'title': newProduct.title,
@@ -83,9 +83,9 @@ class Tasks with ChangeNotifier {
     }
   }
 
-  Future<void> deleteTask(String id) async {
+  Future<void> deleteTask(String id,userId) async {
     final url = Uri.https(
-        'todoapp-e736b-default-rtdb.firebaseio.com', '/tasks/$id.json');
+        'todoapp-e736b-default-rtdb.firebaseio.com', '/tasks/$userId/$id.json');
     // Uri.https('flutter-update.firebaseio.com', '/products/$id.json');
     final existingProductIndex = _items.indexWhere((prod) => prod.id == id);
     Task? existingProduct = _items[existingProductIndex];

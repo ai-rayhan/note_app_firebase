@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:note_app_firebase/screens/account_screen.dart';
+import 'package:note_app_firebase/screens/settings_screen.dart';
 
 import '../screens/news_screen.dart';
 import '../screens/tasks_screen.dart';
-
-
 
 class MyBottomNavBar extends StatefulWidget {
   const MyBottomNavBar({Key? key}) : super(key: key);
@@ -38,7 +37,6 @@ class MyBottomNavBarState extends State<MyBottomNavBar> {
     TaskScreen(),
     NewsScreen(),
     AccountScreen(),
-
   ];
 
   //Implementing Bottom Navigation Bar
@@ -67,11 +65,10 @@ class MyBottomNavBarState extends State<MyBottomNavBar> {
                 label: "News",
               ),
               BottomNavigationBarItem(
-                activeIcon: Icon(Icons.account_circle),
-                icon: Icon(Icons.account_circle_outlined),
-                label: "My App",
+                activeIcon: Icon(Icons.settings),
+                icon: Icon(Icons.settings_outlined),
+                label: "Settings",
               ),
-              
             ],
             currentIndex: bottomNavigationTabIndex,
             onTap: (int index) {

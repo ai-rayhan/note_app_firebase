@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:note_app_firebase/provider/task.dart';
 import 'package:provider/provider.dart';
+import '../provider/auth.dart';
 import '../provider/tasks.dart';
 
 class EditTaskScreen extends StatefulWidget {
@@ -48,6 +49,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
 
   Future<void> _saveForm() async {
     final isValid = _form.currentState!.validate();
+     var userId = Provider.of<Auth>(context,listen: false).getUserId;
     if (!isValid) {
       return;
     }
@@ -57,11 +59,11 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
     });
     if (_editedProduct.id != '') {
       await Provider.of<Tasks>(context, listen: false)
-          .updateTask(_editedProduct.id, _editedProduct);
+          .updateTask(_editedProduct.id, _editedProduct,userId);
     } else {
       try {
         await Provider.of<Tasks>(context, listen: false)
-            .addTask(_editedProduct);
+            .addTask(_editedProduct,userId);
       } catch (error) {
         await showDialog(
           context: context,

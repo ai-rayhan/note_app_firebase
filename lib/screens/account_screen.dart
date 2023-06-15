@@ -5,14 +5,14 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:http/http.dart' as http;
 
 // pk_test_51NEyyFCLicb7WxzzXr1nPmEUKNiMxfbv9jxDIAA8bKAt5JNyC99H9LuWKv8QCP1Rhz3LGm3J0KoTtauIlWxumwbA00NVbsdhKA
-class AccountScreen extends StatefulWidget {
-  const AccountScreen({super.key});
+class UpgradeScreen extends StatefulWidget {
+  const UpgradeScreen({super.key});
 
   @override
-  State<AccountScreen> createState() => _AccountScreenState();
+  State<UpgradeScreen> createState() => _UpgradeScreenState();
 }
 
-class _AccountScreenState extends State<AccountScreen> {
+class _UpgradeScreenState extends State<UpgradeScreen> {
   Map<String, dynamic>? paymentIntend;
   makepayment() async {
     try {

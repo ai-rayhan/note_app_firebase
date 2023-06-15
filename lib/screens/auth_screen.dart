@@ -22,15 +22,15 @@ class AuthScreen extends StatelessWidget {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                   Colors.blueGrey,
-                  const Color.fromRGBO(255, 188, 117, 1).withOpacity(0.9),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                stops: [0, 1],
-              ),
+              // gradient: LinearGradient(
+              //   colors: [
+              //      Colors.blueGrey,
+              //     Color.fromARGB(255, 40, 54, 126).withOpacity(0.9),
+              //   ],
+              //   begin: Alignment.topLeft,
+              //   end: Alignment.bottomRight,
+              //   stops: [0, 1],
+              // ),
             ),
           ),
           SingleChildScrollView(
@@ -43,32 +43,12 @@ class AuthScreen extends StatelessWidget {
                 children: <Widget>[
                   Flexible(
                     child: Container(
-                      margin: const EdgeInsets.only(bottom: 20.0),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 8.0, horizontal: 94.0),
-                      // transform: Matrix4.rotationZ(-8 * pi / 180)
-                      //   ..translate(-10.0),
-                      // ..translate(-10.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Color.fromARGB(255, 36, 104, 192),
-                        boxShadow: [
-                          const BoxShadow(
-                            blurRadius: 8,
-                            color: Colors.black26,
-                            offset: Offset(0, 2),
-                          )
-                        ],
-                      ),
-                      child: Text(
-                        'MyNote',
-                        style: TextStyle(
-                          color: Theme.of(context).textTheme.bodyLarge?.color,
-                          fontSize: 50,
-                          fontFamily: 'Anton',
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
+                      height: 150,
+                      child: Column(children: const[
+                        Icon(Icons.note_alt, size: 80,color: Colors.blue,),
+                        SizedBox(height: 10,),
+                        Center(child: Text("My Note",style: TextStyle(fontSize: 25),),)
+                      ],),
                     ),
                   ),
                   Flexible(
@@ -190,9 +170,9 @@ class _AuthCardState extends State<AuthCard>
     final deviceSize = MediaQuery.of(context).size;
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(20.0),
       ),
-      elevation: 8.0,
+      elevation: 4.0,
       child: Container(
         height: heightAnimation.value.height,
         constraints: BoxConstraints(minHeight: heightAnimation.value.height),
